@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Document } from '../document.model';
+import { DocumentService } from '../document.service';
 
 @Component({
   selector: 'cms-document-list',
@@ -7,51 +8,17 @@ import { Document } from '../document.model';
   styleUrls: ['./document-list.component.css'],
 })
 export class DocumentListComponent implements OnInit {
-  @Output() selectedDocumentEvent = new EventEmitter<Document>();
+  selectedDocument: Document
+
+  constructor(private documentService: DocumentService) {}
 
   onSelectedDocument(document: Document) {
-    this.selectedDocumentEvent.emit(document);
+    this.documentService.documentSelectedEvent.emit(document)
   }
 
-  documents: Document[] = [
-    new Document(
-      '1',
-      'CIT 260 - Object Oriented Programming',
-      'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      'https://www.youtube.com/watch?v=NCHYDtA60-g',
-      null
-    ),
-    new Document(
-      '2',
-      'CIT 366 - Full Stack Web Dev',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      'https://www.youtube.com/watch?v=NCHYDtA60-g',
-      null
-    ),
-    new Document(
-      '3',
-      'CIT 425 - Data Warehousing',
-      'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      'https://www.youtube.com/watch?v=NCHYDtA60-g',
-      null
-    ),
-    new Document(
-      '4',
-      'CIT 460 - Enterprise Dev',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      'https://www.youtube.com/watch?v=NCHYDtA60-g',
-      null
-    ),
-    new Document(
-      '5',
-      'CIT 495 - Senior Practicum',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-      'https://www.youtube.com/watch?v=NCHYDtA60-g',
-      null
-    ),
-  ];
+  documents: Document[]
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.documents = this.documentService.getDocuments()
+  }
 }
