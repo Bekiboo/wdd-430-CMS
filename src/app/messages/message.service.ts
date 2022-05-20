@@ -16,13 +16,10 @@ export class MessageService {
   }
 
   getMessages() {
-    return this.messages.slice();
+    return [...this.messages];
   }
 
   getMessage(id: string) {
-    // this.messages.forEach((message) => {
-    //   return message.id == id ? message : null;
-    // });
     return this.messages.find((message) => message.id == id);
   }
 

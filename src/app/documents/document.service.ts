@@ -14,13 +14,10 @@ export class DocumentService {
     this.documents = MOCKDOCUMENTS;
   }
 
-  getDocuments() {
-    return this.documents.slice();
+  getDocuments(): Document[] {
+    return [...this.documents];
   }
   getDocument(id: string) {
-    // this.documents.forEach((document) => {
-    //   return document.id == id ? document : null;
-    // });
     return this.documents.find((document) => document.id == id);
   }
 }
