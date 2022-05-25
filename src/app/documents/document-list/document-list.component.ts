@@ -8,13 +8,16 @@ import { DocumentService } from '../document.service';
   styleUrls: ['./document-list.component.css'],
 })
 export class DocumentListComponent implements OnInit {
-  selectedDocument: Document
+  selectedDocument: Document;
 
   constructor(private documentService: DocumentService) {}
 
-  documents: Document[]
+  documents: Document[];
 
   ngOnInit(): void {
-    this.documents = this.documentService.getDocuments()
+    this.documents = this.documentService.getDocuments();
+    this.documentService.documentChangedEvent.subscribe(
+      (array: Document[]) => {this.documents = array}
+    );
   }
 }
