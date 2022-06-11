@@ -26,7 +26,7 @@ export class ContactService {
     return this.contacts.find((contact) => contact.id == id);
   }
 
-  addDocument(newContact: Contact) {
+  addContact(newContact: Contact) {
     if (!newContact) return;
 
     this.maxContactId++;
@@ -35,13 +35,13 @@ export class ContactService {
     this.contactListChangedEvent.next([...this.contacts]);
   }
 
-  updateDocument(originalDocument: Contact, newContact: Contact) {
-    if (!originalDocument || !newContact) return;
+  updateContact(originalContact: Contact, newContact: Contact) {
+    if (!originalContact || !newContact) return;
 
-    const pos = this.contacts.indexOf(originalDocument);
+    const pos = this.contacts.indexOf(originalContact);
     if (pos < 0) return;
 
-    newContact.id = originalDocument.id;
+    newContact.id = originalContact.id;
     this.contacts[pos] = newContact;
     this.contactListChangedEvent.next([...this.contacts]);
   }
