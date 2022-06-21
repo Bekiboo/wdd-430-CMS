@@ -7,7 +7,7 @@ import { Document } from './document.model';
   providedIn: 'root',
 })
 export class DocumentService {
-  documentSelectedEvent = new EventEmitter<Document>();
+  documentSelectedEvent = new Subject<Document>();
   documentListChangedEvent = new Subject<Document[]>();
 
   private documents: Document[] = [];

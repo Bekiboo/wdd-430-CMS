@@ -7,7 +7,7 @@ import { Contact } from './contact.model';
   providedIn: 'root',
 })
 export class ContactService {
-  contactSelectedEvent = new EventEmitter<Contact>();
+  contactSelectedEvent = new Subject<Contact>();
   contactListChangedEvent = new Subject<Contact[]>();
 
   private contacts: Contact[] = [];

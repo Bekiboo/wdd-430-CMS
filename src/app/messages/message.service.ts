@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Message } from './message.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
-  messageSelectedEvent = new EventEmitter<Message>();
-  messageChangedEvent = new EventEmitter<Message[]>()
+  messageSelectedEvent = new Subject<Message>();
+  messageChangedEvent = new Subject<Message[]>()
 
   private messages: Message[] = [];
   maxMessageId: number
