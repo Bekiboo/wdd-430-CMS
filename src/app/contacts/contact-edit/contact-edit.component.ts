@@ -48,8 +48,9 @@ export class ContactEditComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const value = form.value;
+    
     const newContact = new Contact(
-      this.contactService.getMaxId().toString(),
+      '',
       value.name,
       value.email,
       value.phone,
@@ -95,6 +96,7 @@ export class ContactEditComponent implements OnInit {
     if (invalidGroupContact) {
       return;
     }
+    
     this.groupContacts.push(selectedContact);
   }
 
